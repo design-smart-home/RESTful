@@ -1,0 +1,63 @@
+[tool.poetry]
+name = "testtaskshift"
+version = "0.1.0"
+description = ""
+authors = [ "artem temagroz-2@yandex.ru" ]
+packages = [{ include = "app" }]
+readme = "README.md"
+
+
+[build-system]
+requires = ["poetry-core>=2.0.0,<3.0.0"]
+build-backend = "poetry.core.masonry.api"
+
+
+[tool.poetry.dependencies]
+python = "^3.12"
+fastapi = "0.109.1"
+psycopg = {extras = ["binary"], version = "^3.2.9"}
+alembic = "^1.12.0"
+respx = "^0.20.1"
+httpx = "^0.24.1"
+uvicorn = "^0.23.0"
+passlib = {extras = ["bcrypt"], version = "^1.7.4"}
+python-jose = "^3.3.0"
+pytest = "^7.4.2"
+sqlalchemy = "^2.0.41"
+pydantic-settings = "^2.10.1"
+python-multipart = "^0.0.20"
+pytest-asyncio = "<0.8"
+
+[tool.poetry.group.dev.dependencies]
+ruff = "^0.5.0"
+mypy = "^1.10.0"
+poethepoet = "*"
+
+[tool.poe.tasks]
+start = "docker compose up -d --build"
+stop = "docker compose stop"
+lint = "ruff check app"
+format = "ruff format app -v"
+types = "mypy app"
+
+[tool.ruff]
+exclude = [
+    "venv",
+    ".venv",
+    ".mypy_cache",
+    "build",
+    "dist",
+    "alembic/versions"
+]
+
+[tool.mypy]
+python_version = "3.12"
+plugins = ["pydantic.mypy"]
+exclude = [
+    "venv",
+    ".venv",
+    ".mypy_cache",
+    "build",
+    "dist",
+    "alembic/versions"
+]
