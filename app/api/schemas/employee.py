@@ -3,12 +3,6 @@ from datetime import date
 
 import uuid
 
-# id: Mapped[uuid.UUID] = mapped_column(UUID(as_uuid=True), primary_key=True, default=uuid.uuid4)
-# login: Mapped[str] = mapped_column(String(60), nullable=False)
-# hashed_password: Mapped[str] = mapped_column(String(128), nullable=False)
-# salary: Mapped[int] = mapped_column(Integer, nullable=False)
-# date_of_promotion: Mapped[date] = mapped_column(Date)
-
 
 class CreateEmployeeRequest(BaseModel):
     login: str
